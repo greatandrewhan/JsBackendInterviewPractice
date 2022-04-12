@@ -105,7 +105,7 @@ function getScience(req, res, next) {
 
 module.exports = {
   read: read,
-  patch: [scienceExists, bodyHasNameProperty, patch],
+  update: [scienceExists, bodyHasNameProperty, patch],
   scientistRead: [scienceExists, scientistRead],
   create: [bodyHasNameProperty, bodyHasDescriptionProperty, create],
   getScience: [getScience]
