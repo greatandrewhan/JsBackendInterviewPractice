@@ -8,20 +8,19 @@ The database consist of two tables: sciences and scientists. An example of some 
 
 SCIENCES
 
-id   name                description
-1 Chemistry  The study of properties and behaviours of substances
-2 Biology    The study of life
+id name description
+1 Chemistry The study of properties and behaviours of substances
+2 Biology The study of life
 3 Archeology The study of human material remains
-
 
 And an example of the data you may find in the scientists table is:
 
 SCIENTISTS:
 
 id first_name last_name born died science (FK)
-1 Dorothy        Bate   1878 1951  3
-2 Alice          Ball   1892 1916  1
-3 Michiyo      Tsujimura 1888 1969 1
+1 Dorothy Bate 1878 1951 3
+2 Alice Ball 1892 1916 1
+3 Michiyo Tsujimura 1888 1969 1
 
 Existing files
 file path description
@@ -52,7 +51,6 @@ id: 3,
 name: "Archeology",
 description: "The study of human material remains"
 }]
-
 
 PATCH /sciences/:scienceId
 Update the name of a science to the database.
@@ -102,3 +100,48 @@ Task
 Initially all the tests will fail. You will notice that the controller code is written in the file named sciences/science.router.js.
 
 Create a new file named sciences/sciences.controller.js. Refactor the router by moving the controller code into this new file.
+
+NOTE:
+post - /sciences
+get -
+
+Endpoints that you have to create
+POST /sciences
+Add a new science to the database.
+
+Parameters
+Accept a JSON object in the body of the request in the following format:
+
+{
+"name": "The name of the science (string)",
+"description": "The description of the science to add (string)"
+}
+Response
+Respond with status 201 and the full created object:
+
+{
+id: 4,
+name: "Bio Chemistry",
+description: "The study of life"
+}
+Errors
+If the description property is missing, respond with status 400 and the body:
+
+{
+error: "A 'description' property is required"
+}
+If the name property is missing, respond with status 400 and the body:
+
+{
+error: "A 'name' property is required"
+}
+
+GET /sciences/:scienceId
+Return the science with the given scienceId.
+
+Example Response for GET /sciences/2
+{
+id: 2,
+name: "Biology",
+description: "The study of life"
+}

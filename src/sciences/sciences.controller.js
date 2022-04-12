@@ -77,7 +77,7 @@ async function scientistRead(req, res) {
 }
 
 
-function post(req, res, next) {
+function create(req, res, next) {
   const {name, description} = req.params;
   const knex = await req.app.get("db");
 
@@ -107,6 +107,6 @@ module.exports = {
   read: read,
   patch: [scienceExists, bodyHasNameProperty, patch],
   scientistRead: [scienceExists, scientistRead],
-  post: [bodyHasNameProperty, bodyHasDescriptionProperty, post],
+  create: [bodyHasNameProperty, bodyHasDescriptionProperty, create],
   getScience: [getScience]
 };
